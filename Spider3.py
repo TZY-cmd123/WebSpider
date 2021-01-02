@@ -11,13 +11,13 @@ from bs4 import BeautifulSoup
 #     print(i)
 
 
-
+#爬取图片的模型
 filename="C:\\Users\\TZY\\Desktop\\SpiderTest\\"
 url1="https://www.pixiv.net/artworks"
 html=urlopen(url1)
 bs=BeautifulSoup(html.read(),'lxml')
-imglist=bs.findAll('img',{'alt':re.compile("我是正则表达式")})
-
+imglist=bs.findAll('img',{'src':re.compile("正则表达式")})
+print(imglist)
 count=0
 for i in imglist:
     imgsrc=i.get('src')
@@ -26,7 +26,6 @@ for i in imglist:
         with open(filename+str(count)+".jpg", 'wb') as f:
             f.write(r.content)
             f.close()
-            print("差不多得了")
             count+=1
             print(count)
     else:
